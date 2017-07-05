@@ -1,0 +1,204 @@
+{
+  "company": [
+    {"name": {"name": "ABC Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 10
+    },
+    {"name": {"name": "DEF Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 11
+    },
+    {"name": {"name": "GHI Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 12
+    },
+    {"name": {"name": "JKL Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 13
+    },
+    {"name": {"name": "MNO Food"},
+     "foundingYear": {"year": 1873},
+     "marketValue": 14
+    },
+    {"name": {"name": "PQR Food"},
+     "foundingYear": {"year": 1873},
+     "marketValue": 15
+    },
+    {"name": {"name": "STU Food"},
+     "foundingYear": {"year": 1873},
+     "marketValue": 100
+    },
+    {"name": {"name": "VWX Food"},
+     "foundingYear": {"year": 1873},
+     "marketValue": 1000
+    },
+    {"name": {"name": "YZ Food"},
+     "foundingYear": {"year": 1873},
+     "marketValue": 1500
+    },
+    {"name": {"name": "ABC Garment"},
+     "foundingYear": {"year": 1874},
+     "marketValue": 8
+    },
+    {"name": {"name": "DEF Garment"},
+     "foundingYear": {"year": 1874},
+     "marketValue": 9
+    },
+    {"name": {"name": "GHI Garment"},
+     "foundingYear": {"year": 1874},
+     "marketValue": 10
+    },
+    {"name": {"name": "JKL Garment"},
+     "foundingYear": {"year": 1874},
+     "marketValue": 20
+    },
+    {"name": {"name": "MNO Garment"},
+     "foundingYear": {"year": 1899},
+     "marketValue": 30
+    },
+    {"name": {"name": "PQR Garment"},
+     "foundingYear": {"year": 1874},
+     "marketValue": 40
+    },
+    {"name": {"name": "STU Garment"},
+     "foundingYear": {"year": 1900},
+     "marketValue": 50
+    },
+    {"name": {"name": "VWX Garment"},
+     "foundingYear": {"year": 1900},
+     "marketValue": 60
+    },
+    {"name": {"name": "YZ Garment"},
+     "foundingYear": {"year": 1900},
+     "marketValue": 200
+    },
+    {"name": {"name": "ABC Estate"},
+     "foundingYear": {"year": 1901},
+     "marketValue": 500
+    },
+    {"name": {"name": "DEF Estate"},
+     "foundingYear": {"year": 1950},
+     "marketValue": 600
+    },
+    {"name": {"name": "GHI Estate"},
+     "foundingYear": {"year": 1950},
+     "marketValue": 700
+    },
+    {"name": {"name": "JKL Estate"},
+     "foundingYear": {"year": 1950},
+     "marketValue": 800
+    },
+    {"name": {"name": "MNO Estate"},
+     "foundingYear": {"year": 1950},
+     "marketValue": 1000
+    },
+    {"name": {"name": "PQR Estate"},
+     "foundingYear": {"year": 1954},
+     "marketValue": 2000
+    },
+    {"name": {"name": "STU Estate"},
+     "foundingYear": {"year": 1954},
+     "marketValue": 3000
+    },
+    {"name": {"name": "VWX Estate"},
+     "foundingYear": {"year": 1961},
+     "marketValue": 4000
+    },
+    {"name": {"name": "YZ Estate"},
+     "foundingYear": {"year": 1962},
+     "marketValue": 10000
+    },
+    {"name": {"name": "ABC Motors"},
+     "foundingYear": {"year": 1962},
+     "marketValue": 1000
+    },
+    {"name": {"name": "DEF Motors"},
+     "foundingYear": {"year": 1962},
+     "marketValue": 2000
+    },
+    {"name": {"name": "GHI Motors"},
+     "foundingYear": {"year": 1962},
+     "marketValue": 3000
+    },
+    {"name": {"name": "JKL Motors"},
+     "foundingYear": {"year": 1970},
+     "marketValue": 4000
+    },
+    {"name": {"name": "MNO Motors"},
+     "foundingYear": {"year": 1970},
+     "marketValue": 5000
+    },
+    {"name": {"name": "PQR Motors"},
+     "foundingYear": {"year": 1971},
+     "marketValue": 6000
+    },
+    {"name": {"name": "STU Motors"},
+     "foundingYear": {"year": 1971},
+     "marketValue": 7000
+    },
+    {"name": {"name": "VWX Motors"},
+     "foundingYear": {"year": 1971},
+     "marketValue": 8000
+    },
+    {"name": {"name": "YZ Motors"},
+     "foundingYear": {"year": 1972},
+     "marketValue": 9000
+    },
+    {"name": {"name": "ABC Telecom"},
+     "foundingYear": {"year": 1972},
+     "marketValue": 1000
+    },
+    {"name": {"name": "DEF Telecom"},
+     "foundingYear": {"year": 1972},
+     "marketValue": 2000
+    },
+    {"name": {"name": "GHI Telecom"},
+     "foundingYear": {"year": 1972},
+     "marketValue": 3000
+    },
+    {"name": {"name": "JKL Telecom"},
+     "foundingYear": {"year": 1972},
+     "marketValue": 4000
+    },
+    {"name": {"name": "MNO Telecom"},
+     "foundingYear": {"year": 1988},
+     "marketValue": 5000
+    },
+    {"name": {"name": "PQR Telecom"},
+     "foundingYear": {"year": 1990},
+     "marketValue": 6000
+    },
+    {"name": {"name": "STU Telecom"},
+     "foundingYear": {"year": 1990},
+     "marketValue": 8000
+    },
+    {"name": {"name": "VWX Telecom"},
+     "foundingYear": {"year": 1990},
+     "marketValue": 10000
+    },
+    {"name": {"name": "YZ Telecom"},
+     "foundingYear": {"year": 1997},
+     "marketValue": 30000
+    },
+    {"name": {"name": "ABC Technologies"},
+     "foundingYear": {"year": 2000},
+     "marketValue": 1
+    },
+    {"name": {"name": "DEF Technologies"},
+     "foundingYear": {"year": 2001},
+     "marketValue": 5
+    },
+    {"name": {"name": "GHI Technologies"},
+     "foundingYear": {"year": 2002},
+     "marketValue": 30
+    },
+    {"name": {"name": "JKL Technologies"},
+     "foundingYear": {"year": 2008},
+     "marketValue": 500
+    },
+    {"name": {"name": "MNO Technologies"},
+     "foundingYear": {"year": 2011},
+     "marketValue": 3000
+    }
+  ]
+}

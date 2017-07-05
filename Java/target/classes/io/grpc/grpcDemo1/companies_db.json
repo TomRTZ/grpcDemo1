@@ -1,0 +1,16 @@
+{
+  "company": [
+    {"name": {"name": "ABC Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 10
+    },
+    {"name": {"name": "DEF Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 11
+    },
+    {"name": {"name": "GHI Food"},
+     "foundingYear": {"year": 1872},
+     "marketValue": 12
+    }
+  ]
+}
