@@ -14,7 +14,7 @@ package io.grpc.grpcDemo1;
 //import com.google.protobuf.Message;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-//import io.grpc.Status;
+import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 //import io.grpc.grpcDemo1.CompaniesGrpc.CompaniesBlockingStub;
 //import io.grpc.grpcDemo1.CompaniesGrpc.CompaniesStub;
@@ -23,8 +23,12 @@ import io.grpc.stub.StreamObserver;
 import java.util.Iterator;
 import java.util.ArrayList;
 //import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompaniesClient {
+	
+	private static final Logger logger = Logger.getLogger(CompaniesClient.class.getName());
 	
 	private final ManagedChannel channel;
 	private final CompaniesGrpc.CompaniesBlockingStub blockingStub;
@@ -52,6 +56,8 @@ public class CompaniesClient {
 	public void getFoundingYear(String name) {
 		System.out.println("----------- Get founding year --------------");
 		System.out.println("Inquire the founding year of the company: " + name);
+//		info("----------- Get founding year --------------");
+//		info("Inquire the founding year of the company: {0}", name);
 		Name companyName = Name.newBuilder().setName(name).build();
 		FoundingYear foundingYear;
 		
@@ -59,6 +65,7 @@ public class CompaniesClient {
 			foundingYear = blockingStub.getFoundingYear(companyName);
 		} catch(StatusRuntimeException e) {
 			System.out.println("getFoundingYear RPC failed: {0}" + e.getStatus());
+//			warning("getFoundingYear RPC failed: {0}", e.getStatus());
 			return;
 		}
 		
@@ -66,10 +73,12 @@ public class CompaniesClient {
 		if(year != 0) {
 			System.out.println("The company " + name + " was founded in the year of " + year);
 			System.out.println();
+//			info("The company {0} was founded in the year of {1}", name, year);
 		}
 		else {
 			System.out.println("There is no company called " + name + " in the database");
 			System.out.println();
+//			info("There is no company called {0} in the database", name);
 		}
 	}
 	
@@ -110,11 +119,19 @@ public class CompaniesClient {
 		
 //		create some company names
 		ArrayList<Name> companyNames = new ArrayList<Name>();
-		companyNames.add(Name.newBuilder().setName("ABC Food").build());
-		companyNames.add(Name.newBuilder().setName("DEF Food").build());
-		companyNames.add(Name.newBuilder().setName("GHI Food").build());
+		companyNames.add(Name.newBuilder().setName("ABC Telecom").build());
+		companyNames.add(Name.newBuilder().setName("DEF Telecom").build());
+		companyNames.add(Name.newBuilder().setName("GHI Telecom").build());
+		companyNames.add(Name.newBuilder().setName("JKL Telecom").build());
+		companyNames.add(Name.newBuilder().setName("MNO Telecom").build());
 
 		StreamObserver<AverageAge> responseObserver = new StreamObserver<AverageAge>() {
+//			private int test = 0;
+//			
+//			public int getTest(){
+//				return test;
+//			}
+			
 //			@Override
 		    public void onNext(AverageAge averageAge) {
 		    	System.out.println("The average age of the companies is: " + averageAge.getAge());
@@ -122,7 +139,7 @@ public class CompaniesClient {
 		    
 //		    @Override
 		    public void onError(Throwable t) {
-		    	System.out.println("Calculating average age failed");
+		    	System.out.println("Calculating average age failed: " + Status.fromThrowable(t));
 		    }
 		    
 //		    @Override
@@ -132,7 +149,13 @@ public class CompaniesClient {
 		    }
 		};
 		
+//		System.out.println(responseObserver);
+//		System.out.println(responseObserver.getTest());
+//		responseObserver.onNext(AverageAge.newBuilder().setAge(100).build());
 		StreamObserver<Name> requestObserver = asyncStub.calcAverageAge(responseObserver);
+//		System.out.println(requestObserver);
+//		requestObserver.onNext(Name.newBuilder().setName("ABC Food").build());
+//		System.out.println("total age is " + requestObserver.totalAge + ", count is " + requestObserver.count);
 		
 		try {
 			for(Name name : companyNames) {
@@ -159,21 +182,21 @@ public class CompaniesClient {
 		
 //		create some company names
 		ArrayList<Name> companyNames = new ArrayList<Name>();
-		companyNames.add(Name.newBuilder().setName("ABC Food").build());
-		companyNames.add(Name.newBuilder().setName("DEF Food").build());
-		companyNames.add(Name.newBuilder().setName("GHI Food").build());
+		companyNames.add(Name.newBuilder().setName("ABC Garment").build());
+		companyNames.add(Name.newBuilder().setName("DEF Telecom").build());
+		companyNames.add(Name.newBuilder().setName("MNO Technologies").build());
 
 		StreamObserver<Company> responseObserver = new StreamObserver<Company>() {
 //			@Override
 		    public void onNext(Company company) {
 		    	System.out.println("Received from server: Company " + company.getName().getName() + 
-		    			"was founded in the year of " + company.getFoundingYear().getYear() + 
+		    			" was founded in the year of " + company.getFoundingYear().getYear() + 
 		    			", and its market value is " + company.getMarketValue());
 			}
 		    
 //		    @Override
 		    public void onError(Throwable t) {
-		    	System.out.println("Getting company information failed");
+		    	System.out.println("Getting company information failed: " + Status.fromThrowable(t));
 		    }
 		    
 //		    @Override
@@ -187,7 +210,7 @@ public class CompaniesClient {
 		
 		try {
 			for(Name request : companyNames) {
-				System.out.println("Sending company name " + request.getName());
+				System.out.println("Sending company name: " + request.getName());
 				requestObserver.onNext(request);
 			}
 		} catch(RuntimeException e) {
@@ -207,10 +230,10 @@ public class CompaniesClient {
 		
 		try {
 //			get the founding year of a given company
-			client.getFoundingYear("ABC Food");
+			client.getFoundingYear("ABC Something");
 			
 //			list the companies founded in a given year
-			client.listCompanies(1872);
+			client.listCompanies(1874);
 			
 //			calculate the average existing years of some companies
 			client.calcAverageAge();
@@ -220,5 +243,13 @@ public class CompaniesClient {
 		} finally {
 			client.shutdown();
 		}
+	}
+	
+	private void info(String msg, Object... params) {
+	    logger.log(Level.INFO, msg, params);
+	}
+
+	private void warning(String msg, Object... params) {
+	  logger.log(Level.WARNING, msg, params);
 	}
 }

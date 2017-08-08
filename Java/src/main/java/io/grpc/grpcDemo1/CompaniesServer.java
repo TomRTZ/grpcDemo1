@@ -18,8 +18,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 //import java.util.List;
+//import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompaniesServer {
+	
+	private static final Logger logger = Logger.getLogger(CompaniesServer.class.getName());
 
 	private final int port;
 	private final Server server;
@@ -45,6 +49,7 @@ public class CompaniesServer {
 	public void start() throws IOException{
 		server.start();
 		System.out.println("Server started, listening on " + port);
+//		logger.info("Server started, listening on " + port);
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 		    public void run() {
@@ -80,6 +85,7 @@ public class CompaniesServer {
 					", founded in year " + company.getFoundingYear().getYear() + 
 					", market value is " + company.getMarketValue());
 		}
+		System.out.println();
 	}
 	
 	public static void main(String[] args) throws Exception{
@@ -107,7 +113,7 @@ public class CompaniesServer {
 		@Override
 		public void listCompanies(FoundingYear request, StreamObserver<Name> responseObserver) {
 			for(Company company : companies) {
-				if(company.getFoundingYear() == request) {
+				if(company.getFoundingYear().getYear() == request.getYear()) {
 					responseObserver.onNext(company.getName());
 				}
 			}
@@ -115,29 +121,38 @@ public class CompaniesServer {
 		}
 		
 		@Override
-		public StreamObserver<Name> calcAverageAge(final StreamObserver<AverageAge> responseObserver){
-			return new StreamObserver<Name>(){
-				int totalAge = 0;
+		public StreamObserver<Name> calcAverageAge(final StreamObserver<AverageAge> responseObserver) {
+			return new StreamObserver<Name>() {
+				public int totalAge = 0;
 				int count = 0;
 				
 //				@Override
 		        public void onNext(Name name) {
-		        	int age = checkFoundingYear(name).getYear();
-		        	if(age != 0) {
+		        	int age = 2017 - checkFoundingYear(name).getYear();
+		        	System.out.println("age is " + age);
+		        	if(age != 2017) {
 		        		count++;
 		        		totalAge += age;
 		        	}
+		        	System.out.println("Test1: total age is " + this.totalAge + ", count is " + this.count);
+		        	System.out.println();
 				}
 		        
 //		        @Override
 		        public void onError(Throwable t) {
-		        	System.out.println("Calculating average age cancelled");;
+		        	System.out.println("Calculating average age cancelled");
 				}
 		        
 //		        @Override
 		        public void onCompleted() {
+		        	System.out.println("total age is " + this.totalAge + ", count is " + this.count);
+//		        	AverageAge anAge = AverageAge.newBuilder().setAge(1000).build();
+//		        	System.out.println(responseObserver.toString());
+//		        	responseObserver.onNext(anAge);
 		        	if(count != 0) {
-		        		responseObserver.onNext(AverageAge.newBuilder().setAge((int)(totalAge / count)).build());
+		        		int average = (int)(totalAge / count);
+		        		System.out.println("average age " + average);
+		        		responseObserver.onNext(AverageAge.newBuilder().setAge(average).build());
 		        		responseObserver.onCompleted();
 		        	}
 		        	else {
@@ -155,7 +170,7 @@ public class CompaniesServer {
 		        public void onNext(Name name) {
 		        	boolean found = false;
 		        	for(Company company : companies) {
-		        		if(company.getName() == name) {
+		        		if(company.getName().getName().equals(name.getName())) {
 		        			responseObserver.onNext(company);
 		        			found = true;
 		        			break;
@@ -181,13 +196,18 @@ public class CompaniesServer {
 		}
 		
 		private FoundingYear checkFoundingYear(Name name) {
+//			logger.info("input name " + name.getName());
 			for(Company company : companies) {
-				if(company.getName() == name) {
+//				logger.info("company name " + company.getName().getName());
+				if(company.getName().getName().equals(name.getName())) {
+//					logger.info("company name " + company.getName().getName());
 					return company.getFoundingYear();
 				}
 			}
 			
-			return FoundingYear.newBuilder().setYear(0).build();
+			FoundingYear returnYear = FoundingYear.newBuilder().setYear(0).build();
+//			logger.info("Not found year " + returnYear.getYear());
+			return returnYear;
 		}
 	}
 }

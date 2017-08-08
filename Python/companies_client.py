@@ -9,7 +9,7 @@
 
 """The Python implementation of the gRPC companies information client."""
 
-from __future__ import print_function
+#from __future__ import print_function
 from sys import getsizeof
 
 import random
@@ -38,8 +38,8 @@ def print_founding_year(name, year):
 
 
 def guide_get_founding_year(stub):
-  company_name_1 = companies_pb2.Name(name="ABC Food")
-  company_name_2 = companies_pb2.Name(name="AAA Telecom")  #no such a company in the server's database
+  company_name_1 = companies_pb2.Name(name="ABC Estate")
+  company_name_2 = companies_pb2.Name(name="ABC Something")  #no such a company in the server's database
   
   print("Inquire the founding year of company %s" % company_name_1.name)
   founding_year = stub.GetFoundingYear(company_name_1)
@@ -51,7 +51,7 @@ def guide_get_founding_year(stub):
   
 
 def guide_list_companies(stub):
-  year = companies_pb2.FoundingYear(year=1900)
+  year = companies_pb2.FoundingYear(year=1998)
   print("Looking for companies founded in the year %d" % year.year)
 
   companies = stub.ListCompanies(year)  
@@ -61,15 +61,15 @@ def guide_list_companies(stub):
 
 def generate_some_names_1():
   name_list = []
-  name = companies_pb2.Name(name="ABC Technologies")
+  name = companies_pb2.Name(name="ABC Telecom")
   name_list.append(name)
-  name = companies_pb2.Name(name="DEF Technologies")
+  name = companies_pb2.Name(name="DEF Telecom")
   name_list.append(name)
-  name = companies_pb2.Name(name="GHI Technologies")
+  name = companies_pb2.Name(name="GHI Telecom")
   name_list.append(name)
-  name = companies_pb2.Name(name="JKL Technologies")
+  name = companies_pb2.Name(name="JKL Telecom")
   name_list.append(name)
-  name = companies_pb2.Name(name="MNO Technologies")
+  name = companies_pb2.Name(name="MNO Telecom")
   name_list.append(name)
   
   print("the company names sent to the server are: ")
@@ -88,16 +88,16 @@ def guide_calculate_average_age(stub):
 
 def generate_some_names_2():
   company_names = [
-      companies_pb2.Name(name="ABC Food"),
-      companies_pb2.Name(name="AAA Food"),
-      companies_pb2.Name(name="DEF Food"),
-      companies_pb2.Name(name="JKL Technologies"),
-      companies_pb2.Name(name="MNO Technologies"),
+      companies_pb2.Name(name="ABC Garment"),
+      companies_pb2.Name(name="AAA Garment"),
+      companies_pb2.Name(name="DEF Garment"),
+      companies_pb2.Name(name="JKL Motors"),
+      companies_pb2.Name(name="MNO Motor"),
   ]
   for name in company_names:
     print("Sending company name %s" % name.name)
     yield name
-    time.sleep(random.uniform(1.5, 3.0))
+    time.sleep(random.uniform(0.5, 1.0))
 
 
 def guide_get_company_information(stub):

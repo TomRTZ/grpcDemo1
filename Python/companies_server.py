@@ -23,7 +23,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 def get_founding_year(companies_db, input_name):
-  """Returns Feature at given location or None."""
+  """Returns the founding year of the given company name."""
   for company in companies_db:
     if company.name.name == input_name.name:
       return company.foundingYear
@@ -53,7 +53,7 @@ class CompaniesServicer(companies_pb2_grpc.CompaniesServicer):
 
     for company_name in request_iterator:
       for company in self.db:
-        if company.name == company_name:
+        if company.name.name == company_name.name:
           total_age += (current_year - company.foundingYear.year)
           company_count += 1
           break
